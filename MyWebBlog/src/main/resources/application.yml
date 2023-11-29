@@ -1,0 +1,57 @@
+server:
+  port: 8000 #원래 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    
+# jsp는 src/main/resources/static에 저장될 수 없다. 그래서 src/main/webapp/WEB-INF/views로 경로를 설정을 한다.
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  servlet:
+      multipart:
+        max-request-size: 10MB     
+        max-file-size: 1MB
+
+      
+  datasource:
+    #driver-class-name: org.mariadb.jdbc.Driver
+    #url: jdbc:mariadb://192.168.111.129:3306/shopping_db?serverTimezone=Asia/Seoul
+    #username: winuser
+    #password: "4321"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test1?serverTimezone=Asia/Seoul
+    username: root
+    password: "0000"
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create #update,none,create(프로젝트시작시,테이블새로생성, 그래서 초기에만 create 그 이후는 update로 설정변경)
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false # false-> jpa가 사용하는 기본 넘버링 전략 포기, true면 그 반대
+    show-sql: true # Console창에  Entity 결과를 보여준다.
+    properties: # Console창에 보여줄때, 보기좋게 정렬을 해준다.
+      hibernate.format_sql: true
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      
+springdoc:
+  packages-to-scan: com.example.blog.ApiController
+  default-consumes-media-type: multipart/form-data
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: /swag
+    disable-swagger-default-url: true
+    display-request-duration: true
+    operations-sorter: alpha
+      
+
