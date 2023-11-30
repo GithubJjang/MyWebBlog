@@ -53,7 +53,7 @@ public class UserApiControllerTest {
     	ObjectMapper mapper = new ObjectMapper();
     	try {
 			String jsonInString = mapper.writeValueAsString(obj);
-			return jsonInString;
+			return null;
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
